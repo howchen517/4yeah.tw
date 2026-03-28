@@ -20,11 +20,9 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'PingFang TC', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #EFEFEF; display: flex; justify-content: center; }
 
-        .app-container {
-            width: 100%; max-width: 400px; min-height: 100vh; background-color: var(--bg-color);
-            position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden;
-        }
+        .app-container { width: 100%; max-width: 400px; min-height: 100vh; background-color: var(--bg-color); position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden; }
 
+        /* 頁面切換控制 */
         .page { display: none; padding-bottom: 100px; }
         .page.active { display: block; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -43,39 +41,42 @@
         .game-card { background: var(--card-bg); border-radius: 16px; padding: 15px 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer; transition: 0.2s; }
         .game-card:active { transform: scale(0.95); }
         .game-icon { width: 50px; height: 50px; background-color: #EEE; border-radius: 12px; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-        .game-name { font-size: 12px; color: var(--text-main); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* 避免名稱太長破版 */
+        .game-name { font-size: 12px; color: var(--text-main); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* --- 底部導覽列 --- */
-        .bottom-nav {
-            position: fixed; bottom: 0; width: 100%; max-width: 400px; background: var(--card-bg);
-            display: flex; justify-content: space-around; padding: 12px 0 25px;
-            border-top: 1px solid #F0F0F0; border-radius: 20px 20px 0 0; z-index: 999;
-        }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 11px; gap: 4px; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 400px; background: var(--card-bg); display: flex; justify-content: space-around; padding: 12px 0 25px; border-top: 1px solid #F0F0F0; border-radius: 20px 20px 0 0; z-index: 999; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 11px; gap: 4px; cursor: pointer; }
         .nav-item.active { color: var(--primary-color); }
         .nav-item i { font-size: 24px; }
+
+        /* --- 個人中心樣式 --- */
+        .profile-header-card { display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 10px; }
+        .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--primary-color); background-color: #DDD; object-fit: cover; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(106, 171, 115, 0.2); }
+        .profile-name { font-size: 18px; font-weight: bold; color: var(--text-main); margin-bottom: 4px; }
+        .profile-status { font-size: 12px; color: var(--primary-color); background: var(--primary-light); padding: 4px 12px; border-radius: 12px; }
+        .vip-card { margin: 0 20px 20px; background: linear-gradient(135deg, #6AAB73, #85C48D); border-radius: 20px; padding: 25px 20px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 6px 15px rgba(106, 171, 115, 0.4); }
+        .vip-info p { font-size: 13px; opacity: 0.9; margin-bottom: 5px; }
+        .vip-info h3 { font-size: 24px; font-weight: bold; }
+        .vip-icon { font-size: 40px; opacity: 0.8; }
+        .menu-list { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
+        .menu-item { background: var(--card-bg); border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 14px; font-weight: 500; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .menu-item i { font-size: 20px; color: var(--primary-color); }
+        .menu-item .ph-caret-right { margin-left: auto; color: var(--text-muted); font-size: 16px; }
 
         /* --- 遊戲下單頁面樣式 --- */
         .game-header { text-align: center; padding: 10px 20px 20px; }
         .game-header .big-icon { font-size: 48px; margin-bottom: 10px; }
         .section-title { font-size: 14px; font-weight: bold; color: var(--text-main); margin: 20px 20px 10px; display: flex; align-items: center; gap: 6px; }
         .section-title i { color: var(--primary-color); font-size: 18px; }
-
         .input-group { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
         .input-field { width: 100%; padding: 14px 16px; border-radius: 16px; border: 2px solid #EAEAEA; background: var(--card-bg); font-size: 14px; outline: none; transition: 0.3s; }
         .input-field:focus { border-color: var(--primary-color); background: var(--primary-light); }
-
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 20px; margin-bottom: 20px; }
         .product-card { background: var(--card-bg); border: 2px solid #EAEAEA; border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer; transition: 0.2s; }
         .product-card.selected { border-color: var(--primary-color); background: var(--primary-light); }
         .product-name { font-size: 14px; font-weight: bold; color: var(--text-main); margin-bottom: 6px; }
         .product-price { font-size: 16px; color: var(--primary-color); font-weight: 800; }
-
-        .checkout-bar { 
-            position: fixed; bottom: 0; width: 100%; max-width: 400px; background: var(--card-bg); 
-            padding: 15px 20px 25px; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); 
-            display: flex; justify-content: space-between; align-items: center; z-index: 999;
-        }
+        .checkout-bar { position: fixed; bottom: 0; width: 100%; max-width: 400px; background: var(--card-bg); padding: 15px 20px 25px; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; z-index: 999; }
         .total-price { display: flex; flex-direction: column; }
         .total-price span { font-size: 12px; color: var(--text-muted); }
         .total-price strong { font-size: 20px; color: var(--primary-color); }
@@ -88,138 +89,175 @@
     
     <div id="home-page" class="page active">
         <header class="header"><h1>Clover Game Store</h1></header>
-
         <section class="welcome-card">
             <div class="welcome-text">
-                <h2>歡迎來到四葉草！</h2>
+                <h2 id="home-welcome-name">歡迎來到四葉草！</h2>
                 <p>幸運代儲，快速到帳 🍀</p>
             </div>
             <div style="font-size: 40px;">🧚‍♂️</div>
         </section>
-
         <section class="game-grid">
-            <div class="game-card" onclick="openGamePage('aov', '傳說對決', '🛡️')">
-                <div class="game-icon">🛡️</div><div class="game-name">傳說對決</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('codm', '決勝時刻', '🎯')">
-                <div class="game-icon">🎯</div><div class="game-name">決勝時刻</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('pubg', 'PUBGM', '🪂')">
-                <div class="game-icon">🪂</div><div class="game-name">PUBGM</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('heartbeat', '心動小鎮', '🏡')">
-                <div class="game-icon">🏡</div><div class="game-name">心動小鎮</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('supernatural', '超自然行動組', '👻')">
-                <div class="game-icon">👻</div><div class="game-name">超自然行動</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('maplestory', '楓之谷', '🍁')">
-                <div class="game-icon">🍁</div><div class="game-name">楓之谷</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('pkmngo', 'Pokémon GO', '🧭')">
-                <div class="game-icon">🧭</div><div class="game-name">Pokémon GO</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('idv', '第五人格', '🎭')">
-                <div class="game-icon">🎭</div><div class="game-name">第五人格</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('valorant', '特戰英豪', '💥')">
-                <div class="game-icon">💥</div><div class="game-name">特戰英豪</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('tiktok', 'TikTok', '🎵')">
-                <div class="game-icon">🎵</div><div class="game-name">TikTok</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('racing', '巔峰極速', '🏎️')">
-                <div class="game-icon">🏎️</div><div class="game-name">巔峰極速</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('deepspace', '戀與深空', '🌌')">
-                <div class="game-icon">🌌</div><div class="game-name">戀與深空</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('hok', '王者榮耀', '👑')">
-                <div class="game-icon">👑</div><div class="game-name">王者榮耀</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('genshin', '原神', '✨')">
-                <div class="game-icon">✨</div><div class="game-name">原神</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('wuthering', '鳴潮', '🌊')">
-                <div class="game-icon">🌊</div><div class="game-name">鳴潮</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('ptcg', 'PTCG', '🎴')">
-                <div class="game-icon">🎴</div><div class="game-name">PTCG</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('eggy', '蛋仔派對', '🥚')">
-                <div class="game-icon">🥚</div><div class="game-name">蛋仔派對</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('wherewindsmeet', '燕雲十六聲', '🎋')">
-                <div class="game-icon">🎋</div><div class="game-name">燕雲十六聲</div>
-            </div>
-            <div class="game-card" onclick="openGamePage('justice', '逆水寒', '🏮')">
-                <div class="game-icon">🏮</div><div class="game-name">逆水寒</div>
-            </div>
+            <div class="game-card" onclick="openGamePage('aov', '傳說對決', '🛡️')"><div class="game-icon">🛡️</div><div class="game-name">傳說對決</div></div>
+            <div class="game-card" onclick="openGamePage('codm', '決勝時刻', '🎯')"><div class="game-icon">🎯</div><div class="game-name">決勝時刻</div></div>
+            <div class="game-card" onclick="openGamePage('genshin', '原神', '✨')"><div class="game-icon">✨</div><div class="game-name">原神</div></div>
+            <div class="game-card" onclick="openGamePage('pubg', 'PUBGM', '🪂')"><div class="game-icon">🪂</div><div class="game-name">PUBGM</div></div>
+            <div class="game-card" onclick="openGamePage('hok', '王者榮耀', '👑')"><div class="game-icon">👑</div><div class="game-name">王者榮耀</div></div>
+            <div class="game-card" onclick="openGamePage('idv', '第五人格', '🎭')"><div class="game-icon">🎭</div><div class="game-name">第五人格</div></div>
         </section>
+    </div>
+
+    <div id="profile-page" class="page">
+        <header class="header"><h1>個人中心</h1></header>
+        <div class="profile-header-card">
+            <img id="user-avatar" class="profile-img" src="https://api.dicebear.com/7.x/shapes/svg?seed=clover&backgroundColor=EAF4EB" alt="大頭貼">
+            <h2 id="user-name" class="profile-name">載入中...</h2>
+            <span id="user-status" class="profile-status"><i class="ph-fill ph-spinner-gap"></i> 連線中</span>
+        </div>
+        <div class="vip-card">
+            <div class="vip-info">
+                <p>💎 累積儲值金額</p>
+                <h3 id="display-accumulated">NT$ 0</h3>
+            </div>
+            <div class="vip-icon"><i class="ph-fill ph-crown"></i></div>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item"><i class="ph-fill ph-headset"></i> 聯絡官方客服 <i class="ph ph-caret-right"></i></div>
+            <div class="menu-item"><i class="ph-fill ph-question"></i> 常見問題解答 <i class="ph ph-caret-right"></i></div>
+        </div>
+    </div>
+
+    <div id="orders-page" class="page">
+        <header class="header"><h1>我的訂單</h1></header>
+        <div style="text-align: center; padding: 50px 20px; color: var(--text-muted);">
+            <i class="ph ph-receipt" style="font-size: 60px; color: #DDD; margin-bottom: 10px;"></i>
+            <p>目前還沒有訂單紀錄哦 🍀</p>
+        </div>
     </div>
 
     <div id="game-page" class="page">
         <header class="header">
-            <i class="ph ph-caret-left back-btn" onclick="goBackToHome()"></i>
+            <i class="ph ph-caret-left back-btn" onclick="switchTab('home')"></i>
             <h1 id="page-game-title">遊戲名稱</h1>
         </header>
-
-        <div class="game-header">
-            <div class="big-icon" id="page-game-icon">🎮</div>
-        </div>
-
+        <div class="game-header"><div class="big-icon" id="page-game-icon">🎮</div></div>
         <div class="section-title"><i class="ph-fill ph-user-circle"></i> 填寫角色資訊</div>
         <div class="input-group">
             <input type="text" class="input-field" id="player-id" placeholder="請輸入您的遊戲 ID / 帳號">
             <input type="text" class="input-field" id="player-server" placeholder="請填寫伺服器 (若無則免填)">
         </div>
-
         <div class="section-title"><i class="ph-fill ph-shopping-bag"></i> 選擇代儲方案</div>
-        <div class="product-grid" id="product-list">
-            </div>
-
+        <div class="product-grid" id="product-list"></div>
         <div class="checkout-bar" id="checkout-bar" style="display: none;">
             <div class="total-price">
-                <span>合計金額</span>
-                <strong id="display-total">NT$ 0</strong>
+                <span>合計金額</span><strong id="display-total">NT$ 0</strong>
             </div>
             <button class="btn-submit" onclick="submitOrder()">確認下單</button>
         </div>
     </div>
 
     <nav class="bottom-nav" id="main-nav">
-        <a href="#" class="nav-item active">
-            <i class="ph-fill ph-house"></i>
-            <span>首頁</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="ph ph-receipt"></i>
-            <span>我的訂單</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="ph ph-user"></i>
-            <span>個人中心</span>
-        </a>
+        <div class="nav-item active" onclick="switchTab('home')" id="tab-home">
+            <i class="ph-fill ph-house"></i><span>首頁</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('orders')" id="tab-orders">
+            <i class="ph ph-receipt"></i><span>我的訂單</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('profile')" id="tab-profile">
+            <i class="ph ph-user"></i><span>個人中心</span>
+        </div>
     </nav>
 
 </div>
 
 <script>
-    // --- 擴充的商品資料庫 (這裡放了預設的測試方案) ---
+    // 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+    // 👇👇👇 請在這裡填寫您的 LIFF ID 👇👇👇
+    // 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+    
+    const myLiffId = "2009627820-OlBzZCbo"; 
+    
+    // 👆👆👆 (例如："1234567890-AbCdEfGh") 👆👆👆
+    // 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+
+
+    // ================== 狀態與資料管理 ==================
+    let accumulatedTotal = parseInt(localStorage.getItem('clover_total_spent') || '0');
+    
+    function updateAccumulatedDisplay() {
+        document.getElementById('display-accumulated').innerText = `NT$ ${accumulatedTotal.toLocaleString()}`;
+    }
+
+    // ================== LIFF 初始化與 LINE 資料串接 ==================
+    async function initializeLiff() {
+        if (myLiffId === "請把您的_LIFF_ID_貼在這裡") {
+            console.log("提示：尚未填寫 LIFF ID，目前為離線測試模式。");
+            return;
+        }
+
+        try {
+            await liff.init({ liffId: myLiffId });
+            if (liff.isLoggedIn()) {
+                const profile = await liff.getProfile();
+                document.getElementById('user-name').innerText = profile.displayName;
+                document.getElementById('home-welcome-name').innerText = `歡迎回來，${profile.displayName}！`;
+                document.getElementById('user-status').innerHTML = `<i class="ph-fill ph-check-circle"></i> 已綁定 LINE`;
+                
+                if (profile.pictureUrl) {
+                    document.getElementById('user-avatar').src = profile.pictureUrl;
+                }
+            } else {
+                document.getElementById('user-name').innerText = "幸運訪客";
+                document.getElementById('user-status').innerHTML = `未登入`;
+            }
+        } catch (err) {
+            console.log("LIFF 載入失敗或在一般瀏覽器測試中", err);
+            document.getElementById('user-name').innerText = "一般訪客(測試)";
+            document.getElementById('user-status').innerHTML = `未綁定`;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        updateAccumulatedDisplay();
+        initializeLiff();
+    });
+
+    // ================== 頁面切換邏輯 ==================
+    function switchTab(targetPage) {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+            const icon = item.querySelector('i');
+            icon.classList.remove('ph-fill');
+            icon.classList.add('ph');
+        });
+
+        document.getElementById(`${targetPage}-page`).classList.add('active');
+
+        if(targetPage === 'game') {
+            document.getElementById('main-nav').style.display = 'none';
+            document.getElementById('checkout-bar').style.display = 'flex';
+            window.scrollTo(0, 0);
+        } else {
+            document.getElementById('main-nav').style.display = 'flex';
+            document.getElementById('checkout-bar').style.display = 'none';
+            
+            const currentTab = document.getElementById(`tab-${targetPage}`);
+            if(currentTab) {
+                currentTab.classList.add('active');
+                const currentIcon = currentTab.querySelector('i');
+                currentIcon.classList.remove('ph');
+                currentIcon.classList.add('ph-fill');
+            }
+        }
+    }
+
+    // ================== 遊戲下單系統 ==================
     const defaultProducts = [
         { id: 'p1', name: '基本禮包', price: 150 },
         { id: 'p2', name: '超值月卡', price: 330 },
         { id: 'p3', name: '進階通行證', price: 690 },
         { id: 'p4', name: '尊榮大禮包', price: 1490 }
     ];
-
-    // 為所有遊戲配置商品，您可以依照實際需求修改價格
-    const gameProducts = {
-        'aov': [{ name: '100 點券', price: 50 }, { name: '1200 點券', price: 600 }],
-        'codm': [{ name: '80 CP', price: 30 }, { name: '800 CP', price: 300 }],
-        'genshin': [{ name: '空月祝福', price: 170 }, { name: '3280 創世結晶', price: 1490 }],
-        // 如果沒有特別指定的遊戲，就會自動帶入 defaultProducts
-    };
 
     let selectedPrice = 0;
     let selectedProductName = "";
@@ -231,40 +269,20 @@
         document.getElementById('player-server').value = '';
         updateTotal(0, "");
         
-        renderProducts(gameId);
-
-        document.getElementById('home-page').classList.remove('active');
-        document.getElementById('game-page').classList.add('active');
-        document.getElementById('main-nav').style.display = 'none'; 
-        document.getElementById('checkout-bar').style.display = 'flex'; 
-        
-        // 確保切換頁面時，畫面回到最頂端
-        window.scrollTo(0, 0); 
+        renderProducts();
+        switchTab('game');
     }
 
-    function goBackToHome() {
-        document.getElementById('game-page').classList.remove('active');
-        document.getElementById('home-page').classList.add('active');
-        document.getElementById('main-nav').style.display = 'flex'; 
-        document.getElementById('checkout-bar').style.display = 'none'; 
-    }
-
-    function renderProducts(gameId) {
+    function renderProducts() {
         const productContainer = document.getElementById('product-list');
         productContainer.innerHTML = ''; 
-        // 如果特定遊戲沒有設定價目表，就套用 defaultProducts
-        const products = gameProducts[gameId] || defaultProducts;
         
-        products.forEach(product => {
+        defaultProducts.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
-            card.innerHTML = `
-                <div class="product-name">${product.name}</div>
-                <div class="product-price">NT$ ${product.price}</div>
-            `;
+            card.innerHTML = `<div class="product-name">${product.name}</div><div class="product-price">NT$ ${product.price}</div>`;
             card.onclick = function() {
-                const allCards = document.querySelectorAll('.product-card');
-                allCards.forEach(c => c.classList.remove('selected'));
+                document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
                 this.classList.add('selected');
                 updateTotal(product.price, product.name);
             };
@@ -280,17 +298,19 @@
 
     function submitOrder() {
         const uid = document.getElementById('player-id').value;
-        const server = document.getElementById('player-server').value;
         const gameName = document.getElementById('page-game-title').innerText;
 
         if (!uid) { alert("請輸入您的遊戲 ID / 帳號！🍀"); return; }
         if (selectedPrice === 0) { alert("請選擇一個代儲方案！🍀"); return; }
 
-        const confirmMsg = `🍀 訂單確認 🍀\n\n遊戲：${gameName}\n帳號：${uid}\n伺服器：${server || '未填寫'}\n購買方案：${selectedProductName}\n總金額：NT$ ${selectedPrice}\n\n確認無誤將送出訂單！`;
-        
-        if (confirm(confirmMsg)) {
-            alert("訂單已成功建立！");
-            // 接下來可以在這裡接 liff.sendMessages() 
+        if (confirm(`確定送出訂單？\n總金額：NT$ ${selectedPrice}`)) {
+            alert("訂單已成功建立！🍀\n您的累積儲值金額已更新。");
+            
+            accumulatedTotal += selectedPrice;
+            localStorage.setItem('clover_total_spent', accumulatedTotal);
+            updateAccumulatedDisplay();
+            
+            switchTab('home');
         }
     }
 </script>
