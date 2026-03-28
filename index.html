@@ -20,9 +20,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'PingFang TC', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #EFEFEF; display: flex; justify-content: center; }
 
-        .app-container { width: 100%; max-width: 400px; min-height: 100vh; background-color: var(--bg-color); position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden; }
+        /* 手機版預設設定 */
+        .app-container { 
+            width: 100%; 
+            max-width: 400px; 
+            min-height: 100vh; 
+            background-color: var(--bg-color); 
+            position: relative; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); 
+            overflow-x: hidden; 
+        }
 
-        /* 頁面切換控制 */
         .page { display: none; padding-bottom: 100px; }
         .page.active { display: block; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -39,48 +47,89 @@
         
         .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 20px; margin-bottom: 30px; }
         .game-card { background: var(--card-bg); border-radius: 16px; padding: 15px 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer; transition: 0.2s; }
+        .game-card:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.08); } /* 電腦版滑鼠懸停效果 */
         .game-card:active { transform: scale(0.95); }
         .game-icon { width: 50px; height: 50px; background-color: #EEE; border-radius: 12px; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
         .game-name { font-size: 12px; color: var(--text-main); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* --- 底部導覽列 --- */
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 400px; background: var(--card-bg); display: flex; justify-content: space-around; padding: 12px 0 25px; border-top: 1px solid #F0F0F0; border-radius: 20px 20px 0 0; z-index: 999; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 11px; gap: 4px; cursor: pointer; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 400px; background: var(--card-bg); display: flex; justify-content: space-around; padding: 12px 0 25px; border-top: 1px solid #F0F0F0; z-index: 999; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 11px; gap: 4px; cursor: pointer; transition: 0.2s; }
+        .nav-item:hover { color: var(--primary-color); }
         .nav-item.active { color: var(--primary-color); }
         .nav-item i { font-size: 24px; }
 
-        /* --- 個人中心樣式 --- */
+        /* --- 個人中心與遊戲頁面樣式 --- */
         .profile-header-card { display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 10px; }
-        .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--primary-color); background-color: #DDD; object-fit: cover; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(106, 171, 115, 0.2); }
+        .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--primary-color); background-color: #DDD; object-fit: cover; margin-bottom: 12px; }
         .profile-name { font-size: 18px; font-weight: bold; color: var(--text-main); margin-bottom: 4px; }
         .profile-status { font-size: 12px; color: var(--primary-color); background: var(--primary-light); padding: 4px 12px; border-radius: 12px; }
-        .vip-card { margin: 0 20px 20px; background: linear-gradient(135deg, #6AAB73, #85C48D); border-radius: 20px; padding: 25px 20px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 6px 15px rgba(106, 171, 115, 0.4); }
+        .vip-card { margin: 0 20px 20px; background: linear-gradient(135deg, #6AAB73, #85C48D); border-radius: 20px; padding: 25px 20px; color: white; display: flex; justify-content: space-between; align-items: center; }
         .vip-info p { font-size: 13px; opacity: 0.9; margin-bottom: 5px; }
         .vip-info h3 { font-size: 24px; font-weight: bold; }
         .vip-icon { font-size: 40px; opacity: 0.8; }
-        .menu-list { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
-        .menu-item { background: var(--card-bg); border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 14px; font-weight: 500; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .menu-item i { font-size: 20px; color: var(--primary-color); }
-        .menu-item .ph-caret-right { margin-left: auto; color: var(--text-muted); font-size: 16px; }
-
-        /* --- 遊戲下單頁面樣式 --- */
+        
         .game-header { text-align: center; padding: 10px 20px 20px; }
         .game-header .big-icon { font-size: 48px; margin-bottom: 10px; }
         .section-title { font-size: 14px; font-weight: bold; color: var(--text-main); margin: 20px 20px 10px; display: flex; align-items: center; gap: 6px; }
         .section-title i { color: var(--primary-color); font-size: 18px; }
+        
         .input-group { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
         .input-field { width: 100%; padding: 14px 16px; border-radius: 16px; border: 2px solid #EAEAEA; background: var(--card-bg); font-size: 14px; outline: none; transition: 0.3s; }
         .input-field:focus { border-color: var(--primary-color); background: var(--primary-light); }
+        
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 20px; margin-bottom: 20px; }
         .product-card { background: var(--card-bg); border: 2px solid #EAEAEA; border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .product-card:hover { border-color: var(--primary-color); }
         .product-card.selected { border-color: var(--primary-color); background: var(--primary-light); }
         .product-name { font-size: 14px; font-weight: bold; color: var(--text-main); margin-bottom: 6px; }
         .product-price { font-size: 16px; color: var(--primary-color); font-weight: 800; }
+        
         .checkout-bar { position: fixed; bottom: 0; width: 100%; max-width: 400px; background: var(--card-bg); padding: 15px 20px 25px; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; z-index: 999; }
         .total-price { display: flex; flex-direction: column; }
         .total-price span { font-size: 12px; color: var(--text-muted); }
         .total-price strong { font-size: 20px; color: var(--primary-color); }
-        .btn-submit { background: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 20px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(106, 171, 115, 0.3); }
+        .btn-submit { background: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 20px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-submit:hover { background: #5a9962; }
+
+        /* ========================================= */
+        /* 💻 電腦版大螢幕的專屬佈局 (大於 768px 時觸發) */
+        /* ========================================= */
+        @media (min-width: 768px) {
+            .app-container { 
+                max-width: 900px; /* 變寬為 900px */
+                margin: 40px auto; /* 上下留白 */
+                border-radius: 24px; 
+                min-height: calc(100vh - 80px);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            }
+            .header h1 { font-size: 24px; }
+            .game-grid { 
+                grid-template-columns: repeat(5, 1fr); /* 遊戲列表變為一排 5 個 */
+                gap: 20px;
+            }
+            .bottom-nav { 
+                max-width: 900px; /* 導覽列配合變寬 */
+                border-radius: 0 0 24px 24px; 
+                padding-bottom: 15px;
+            }
+            .checkout-bar {
+                max-width: 900px;
+                border-radius: 0 0 24px 24px;
+                padding-bottom: 15px;
+            }
+            .input-group { 
+                flex-direction: row; /* 輸入框改為左右並排 */
+            }
+            .product-grid { 
+                grid-template-columns: repeat(4, 1fr); /* 方案列表變為一排 4 個 */
+            }
+            .vip-card {
+                padding: 40px;
+            }
+            .vip-info h3 { font-size: 32px; }
+            .vip-icon { font-size: 60px; }
+        }
     </style>
 </head>
 <body>
@@ -88,7 +137,7 @@
 <div class="app-container">
     
     <div id="home-page" class="page active">
-        <header class="header"><h1>四葉草 Game Store 🍀</h1></header>
+        <header class="header"><h1>Clover Game Store</h1></header>
         <section class="welcome-card">
             <div class="welcome-text">
                 <h2 id="home-welcome-name">歡迎來到四葉草！</h2>
@@ -103,6 +152,10 @@
             <div class="game-card" onclick="openGamePage('pubg', 'PUBGM', '🪂')"><div class="game-icon">🪂</div><div class="game-name">PUBGM</div></div>
             <div class="game-card" onclick="openGamePage('hok', '王者榮耀', '👑')"><div class="game-icon">👑</div><div class="game-name">王者榮耀</div></div>
             <div class="game-card" onclick="openGamePage('idv', '第五人格', '🎭')"><div class="game-icon">🎭</div><div class="game-name">第五人格</div></div>
+            <div class="game-card" onclick="openGamePage('valorant', '特戰英豪', '💥')"><div class="game-icon">💥</div><div class="game-name">特戰英豪</div></div>
+            <div class="game-card" onclick="openGamePage('tiktok', 'TikTok', '🎵')"><div class="game-icon">🎵</div><div class="game-name">TikTok</div></div>
+            <div class="game-card" onclick="openGamePage('maplestory', '楓之谷', '🍁')"><div class="game-icon">🍁</div><div class="game-name">楓之谷</div></div>
+            <div class="game-card" onclick="openGamePage('wuthering', '鳴潮', '🌊')"><div class="game-icon">🌊</div><div class="game-name">鳴潮</div></div>
         </section>
     </div>
 
@@ -120,17 +173,13 @@
             </div>
             <div class="vip-icon"><i class="ph-fill ph-crown"></i></div>
         </div>
-        <div class="menu-list">
-            <div class="menu-item"><i class="ph-fill ph-headset"></i> 聯絡官方客服 <i class="ph ph-caret-right"></i></div>
-            <div class="menu-item"><i class="ph-fill ph-question"></i> 常見問題解答 <i class="ph ph-caret-right"></i></div>
-        </div>
     </div>
 
     <div id="orders-page" class="page">
         <header class="header"><h1>我的訂單</h1></header>
-        <div style="text-align: center; padding: 50px 20px; color: var(--text-muted);">
-            <i class="ph ph-receipt" style="font-size: 60px; color: #DDD; margin-bottom: 10px;"></i>
-            <p>目前還沒有訂單紀錄哦 🍀</p>
+        <div style="text-align: center; padding: 100px 20px; color: var(--text-muted);">
+            <i class="ph ph-receipt" style="font-size: 80px; color: #DDD; margin-bottom: 20px;"></i>
+            <p style="font-size: 18px;">目前還沒有訂單紀錄哦 🍀</p>
         </div>
     </div>
 
@@ -140,13 +189,16 @@
             <h1 id="page-game-title">遊戲名稱</h1>
         </header>
         <div class="game-header"><div class="big-icon" id="page-game-icon">🎮</div></div>
+        
         <div class="section-title"><i class="ph-fill ph-user-circle"></i> 填寫角色資訊</div>
         <div class="input-group">
             <input type="text" class="input-field" id="player-id" placeholder="請輸入您的遊戲 ID / 帳號">
             <input type="text" class="input-field" id="player-server" placeholder="請填寫伺服器 (若無則免填)">
         </div>
+        
         <div class="section-title"><i class="ph-fill ph-shopping-bag"></i> 選擇代儲方案</div>
         <div class="product-grid" id="product-list"></div>
+        
         <div class="checkout-bar" id="checkout-bar" style="display: none;">
             <div class="total-price">
                 <span>合計金額</span><strong id="display-total">NT$ 0</strong>
@@ -170,29 +222,17 @@
 </div>
 
 <script>
-    // 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
-    // 👇👇👇 請在這裡填寫您的 LIFF ID 👇👇👇
-    // 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
-    
+    // 🌟 填寫您的 LIFF ID 🌟
     const myLiffId = "2009627820-OlBzZCbo"; 
     
-    // 👆👆👆 (例如："1234567890-AbCdEfGh") 👆👆👆
-    // 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
-
-
-    // ================== 狀態與資料管理 ==================
     let accumulatedTotal = parseInt(localStorage.getItem('clover_total_spent') || '0');
     
     function updateAccumulatedDisplay() {
         document.getElementById('display-accumulated').innerText = `NT$ ${accumulatedTotal.toLocaleString()}`;
     }
 
-    // ================== LIFF 初始化與 LINE 資料串接 ==================
     async function initializeLiff() {
-        if (myLiffId === "請把您的_LIFF_ID_貼在這裡") {
-            console.log("提示：尚未填寫 LIFF ID，目前為離線測試模式。");
-            return;
-        }
+        if (myLiffId === "請把您的_LIFF_ID_貼在這裡") return;
 
         try {
             await liff.init({ liffId: myLiffId });
@@ -201,7 +241,6 @@
                 document.getElementById('user-name').innerText = profile.displayName;
                 document.getElementById('home-welcome-name').innerText = `歡迎回來，${profile.displayName}！`;
                 document.getElementById('user-status').innerHTML = `<i class="ph-fill ph-check-circle"></i> 已綁定 LINE`;
-                
                 if (profile.pictureUrl) {
                     document.getElementById('user-avatar').src = profile.pictureUrl;
                 }
@@ -210,9 +249,7 @@
                 document.getElementById('user-status').innerHTML = `未登入`;
             }
         } catch (err) {
-            console.log("LIFF 載入失敗或在一般瀏覽器測試中", err);
-            document.getElementById('user-name').innerText = "一般訪客(測試)";
-            document.getElementById('user-status').innerHTML = `未綁定`;
+            console.log("LIFF 載入失敗");
         }
     }
 
@@ -221,7 +258,6 @@
         initializeLiff();
     });
 
-    // ================== 頁面切換邏輯 ==================
     function switchTab(targetPage) {
         document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(item => {
@@ -251,7 +287,6 @@
         }
     }
 
-    // ================== 遊戲下單系統 ==================
     const defaultProducts = [
         { id: 'p1', name: '基本禮包', price: 150 },
         { id: 'p2', name: '超值月卡', price: 330 },
@@ -268,7 +303,6 @@
         document.getElementById('player-id').value = '';
         document.getElementById('player-server').value = '';
         updateTotal(0, "");
-        
         renderProducts();
         switchTab('game');
     }
@@ -276,7 +310,6 @@
     function renderProducts() {
         const productContainer = document.getElementById('product-list');
         productContainer.innerHTML = ''; 
-        
         defaultProducts.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
@@ -299,17 +332,13 @@
     function submitOrder() {
         const uid = document.getElementById('player-id').value;
         const gameName = document.getElementById('page-game-title').innerText;
-
         if (!uid) { alert("請輸入您的遊戲 ID / 帳號！🍀"); return; }
         if (selectedPrice === 0) { alert("請選擇一個代儲方案！🍀"); return; }
-
         if (confirm(`確定送出訂單？\n總金額：NT$ ${selectedPrice}`)) {
             alert("訂單已成功建立！🍀\n您的累積儲值金額已更新。");
-            
             accumulatedTotal += selectedPrice;
             localStorage.setItem('clover_total_spent', accumulatedTotal);
             updateAccumulatedDisplay();
-            
             switchTab('home');
         }
     }
